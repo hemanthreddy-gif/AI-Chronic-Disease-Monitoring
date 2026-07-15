@@ -25,19 +25,21 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# ---------------------------------------------------------
-# CORS Configuration
-# Allows the React frontend (Vite) to access the backend
-# ---------------------------------------------------------
+# Allowed frontend origins
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "https://ai-chronic-disease-monitoring-hemanth.s3-web.us-south.cloud-object-storage.appdomain.cloud",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Register API routes
