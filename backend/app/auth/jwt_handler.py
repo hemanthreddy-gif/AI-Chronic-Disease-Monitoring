@@ -1,4 +1,4 @@
-from jwt import InvalidTokenError
+from jose import JWTError
 
 from app.core.security import (
     create_access_token,
@@ -15,5 +15,5 @@ def validate_token(token: str) -> TokenPayload:
         payload = decode_access_token(token)
         return TokenPayload(**payload)
 
-    except InvalidTokenError as exc:
-        raise InvalidTokenError("Invalid or expired token.") from exc
+    except JWTError as exc:
+        raise JWTError("Invalid or expired token.") from exc
