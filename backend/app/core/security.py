@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
-import jwt
+from jose import jwt
 from pwdlib import PasswordHash
 
 from app.core.config import settings
@@ -51,7 +51,8 @@ def create_access_token(
 def decode_access_token(token: str) -> dict:
     """
     Decode and validate a JWT access token.
-    Raises jwt.InvalidTokenError if invalid.
+    Decode and validate a JWT access token.
+    Raises JWTError if the token is invalid.
     """
     return jwt.decode(
         token,
